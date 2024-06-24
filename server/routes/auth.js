@@ -2,11 +2,20 @@ import express from 'express'
 
 const router = express.Router()
 
-// controllers
-import { register, login } from '../controllers/auth.js'
+// middlewares
+import { requireSignin, isAdmin } from "../middlewares/auth.js"
 
-// router.get('/users', users) //user controller
+// controllers
+import { register, login, secret } from '../controllers/auth.js'
+
 router.post('/register', register) //user controller
 router.post('/login', login)
+
+//testing
+router.get('/secret', requireSignin, isAdmin, secret)
+
+
+
+
 
 export default router
