@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import authRoutes from './routes/auth.js'
+import categoryRoutes from './routes/category.js'
 import morgan from 'morgan'
 
 dotenv.config() // to use config from .env
@@ -25,6 +26,7 @@ app.use(express.json())
 
 // router middlewares
 app.use('/api', authRoutes)
+app.use('/api', categoryRoutes)
 
 const port = process.env.PORT || 8000
 
