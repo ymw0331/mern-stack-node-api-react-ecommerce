@@ -21,6 +21,7 @@ export const requireSignin = (req, res, next) => {
 
 export const isAdmin = async (req, res, next) => {
     try {
+        // admin is assigned with role = 1
         const user = await User.findById(req.user._id)
         if (user.role !== 1) {
             return res.status(401).send("Unauthorized")

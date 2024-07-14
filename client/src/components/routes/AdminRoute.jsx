@@ -4,7 +4,7 @@ import { useAuth } from "../../context/auth";
 import Loading from "./Loading";
 import axios from 'axios'
 
-export default function PrivateRoute() {
+export default function AdminRoute() {
     // context
     const [auth, setAuth] = useAuth()
 
@@ -12,8 +12,9 @@ export default function PrivateRoute() {
     const [ok, setOk] = useState(false)
 
     useEffect(() => {
-        const authCheck = async () => {
-            const { data } = await axios.get(`/auth-check`)
+        const adminCheck = async () => {
+            // if role is admin, backend send OK
+            const { data } = await axios.get(`/admin-check`)
             if (data.ok) {
                 setOk(true)
             } else {
@@ -22,19 +23,8 @@ export default function PrivateRoute() {
         }
 
         if (auth?.token)
-            authCheck()
+            adminCheck()
     }, [auth?.token])
 
-    // useEffect(() => {
-    //     if (auth?.token) {
-    //         setOk(true)
-    //     } else {
-    //         setOk(false)
-    //     }
-    // }, [auth?.token])
-
-
-    return ok ? <Outlet /> : <Loading />
-    // by default path is login
-
+    return ok ? <Outlet /> : <Loading path="" />
 }
