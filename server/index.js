@@ -1,10 +1,11 @@
 import express from "express"
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
+import morgan from 'morgan'
+import cors from 'cors'
 import authRoutes from './routes/auth.js'
 import categoryRoutes from './routes/category.js'
 import productRoutes from './routes/product.js'
-import morgan from 'morgan'
 
 dotenv.config() // to use config from .env
 
@@ -21,6 +22,7 @@ mongoose
     )
 
 // middlewares
+app.use(cors())
 app.use(morgan("dev"))
 app.use(express.json())
 

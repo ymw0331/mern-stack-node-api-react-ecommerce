@@ -1,17 +1,15 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from 'react-hot-toast'
 import Home from "./pages/Home"
 import Menu from "./components/nav/Menu";
-import Login from "./pages/Login"
-import Register from "./pages/Register"
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import Login from "./pages/auth/Login"
+import Register from "./pages/auth/Register"
 
 export default function App() {
   return (
     <BrowserRouter>
       <Menu />
+      <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
