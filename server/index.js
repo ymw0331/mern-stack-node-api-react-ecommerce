@@ -7,6 +7,7 @@ import authRoutes from './routes/auth.js'
 import categoryRoutes from './routes/category.js'
 import productRoutes from './routes/product.js'
 
+
 dotenv.config() // to use config from .env
 
 const app = express()
