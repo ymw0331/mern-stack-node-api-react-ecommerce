@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext, createContext } from "react";
+import axios from 'axios'
 
 const AuthContext = createContext()
 
@@ -7,6 +8,10 @@ const AuthProvider = ({ children }) => {
         user: null,
         token: ''
     })
+
+    // axios config, allow us to not config it
+    axios.defaults.baseURL = process.env.REACT_APP_API
+    axios.defaults.headers.common['Authorization'] = auth?.token
 
     // useEffect used when componentMount
     useEffect(() => {

@@ -10,6 +10,10 @@ import { register, login, secret } from '../controllers/auth.js'
 
 router.post('/register', register) //user controller
 router.post('/login', login)
+router.get('/auth-check', requireSignin, (req, res) => {
+    // if authenticated, send ok response
+    res.json({ ok: true })
+})
 
 //testing
 router.get('/secret', requireSignin, isAdmin, secret)
